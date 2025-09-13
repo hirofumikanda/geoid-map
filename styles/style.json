@@ -1,0 +1,113 @@
+{
+  "version": 8,
+  "projection": {
+    "type": "globe"
+  },
+  "sources": {
+    "bathymetry": {
+      "type": "vector",
+      "url": "pmtiles:///geoid-map/data/bathymetry.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 8,
+      "attribution": "<a href='https://www.naturalearthdata.com' target='_blank'>Made with Natural Earth</a>"
+    },
+    "land_cover": {
+      "type": "raster",
+      "url": "pmtiles:///geoid-map/data/land_cover.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 4,
+      "attribution": "<a href='https://www.naturalearthdata.com' target='_blank'>Made with Natural Earth</a>"
+    },
+    "gebco": {
+      "type": "raster-dem",
+      "url": "pmtiles:///geoid-map/data/gebco.pmtiles",
+      "tileSize": 256,
+      "minzoom": 0,
+      "maxzoom": 4,
+      "attribution": "<a href='https://www.gebco.net/data-products/gridded-bathymetry-data' target='_blank'>GEBCO_2025 Grid (sub-ice topo/bathy)</a>"
+    },
+    "geoid": {
+      "type": "raster",
+      "url": "pmtiles:///geoid-map/data/egm2008_rgb.pmtiles",
+      "tileSize": 256,
+      "minzoom": 0,
+      "maxzoom": 6,
+      "attribution": "<a href='https://geographiclib.sourceforge.io/1.18/geoid.html' target='_blank'>EGM2008</a>"
+    }
+  },
+  "glyphs": "font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#000011"
+      }
+    },
+    {
+      "id": "land-cover",
+      "type": "raster",
+      "source": "land_cover"
+    },
+    {
+      "id": "bathymetry",
+      "type": "fill",
+      "source": "bathymetry",
+      "source-layer": "bathymetry",
+      "layout": {
+        "fill-sort-key": ["get", "depth"]
+      },
+      "paint": {
+        "fill-opacity": 0.5,
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "depth"],
+          0,
+          "#aad3df",
+          200,
+          "#9cc7d7",
+          1000,
+          "#86b5cc",
+          2000,
+          "#6aa0be",
+          3000,
+          "#4e8bb0",
+          4000,
+          "#3476a2",
+          5000,
+          "#2e6890",
+          6000,
+          "#285a7e",
+          7000,
+          "#224c6c",
+          8000,
+          "#1c3e5a",
+          9000,
+          "#163048",
+          10000,
+          "#102236"
+        ]
+      },
+      "minzoom": 0
+    },
+    {
+      "id": "hillshade",
+      "type": "hillshade",
+      "source": "gebco",
+      "paint": {
+        "hillshade-exaggeration": 0.2
+      },
+      "minzoom": 0
+    },
+    {
+      "id": "geoid",
+      "type": "raster",
+      "source": "geoid",
+      "paint": {
+        "raster-opacity": 0.5
+      },
+      "minzoom": 0
+    }
+  ]
+}
