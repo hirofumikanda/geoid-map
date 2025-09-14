@@ -43,6 +43,12 @@ const MapView = () => {
         "visibility",
         showGeoid ? "visible" : "none"
       );
+      
+      if (showGeoid) {
+        mapRef.current.setTerrain({ source: "geoid", exaggeration: 10000 });
+      } else {
+        mapRef.current.setTerrain(null);
+      }
     }
   }, [showGeoid, mapLoaded]);
 
