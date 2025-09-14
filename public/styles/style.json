@@ -27,11 +27,11 @@
       "attribution": "<a href='https://www.gebco.net/data-products/gridded-bathymetry-data' target='_blank'>GEBCO_2025 Grid (sub-ice topo/bathy)</a>"
     },
     "geoid": {
-      "type": "raster",
-      "url": "pmtiles:///geoid-map/data/egm2008_rgb.pmtiles",
+      "type": "raster-dem",
+      "url": "pmtiles:///geoid-map/data/egm2008_terrainrgb.pmtiles",
       "tileSize": 256,
       "minzoom": 0,
-      "maxzoom": 6,
+      "maxzoom": 7,
       "attribution": "<a href='https://geographiclib.sourceforge.io/1.18/geoid.html' target='_blank'>EGM2008</a>"
     }
   },
@@ -101,11 +101,21 @@
       "minzoom": 0
     },
     {
-      "id": "geoid",
-      "type": "raster",
+      "id": "geoid-relief",
+      "type": "color-relief",
       "source": "geoid",
       "paint": {
-        "raster-opacity": 0.5
+        "color-relief-color": [
+          "interpolate",
+          ["linear"],
+          ["elevation"],
+          -60, ["rgb", 0, 0, 255],
+          -30, ["rgb", 0, 128, 255],
+          0, ["rgb", 0, 255, 255],
+          30, ["rgb", 255, 255, 0],
+          60, ["rgb", 255, 0, 0]
+        ],
+        "color-relief-opacity": 0.7
       },
       "minzoom": 0
     }

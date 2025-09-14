@@ -39,7 +39,7 @@ const MapView = () => {
   useEffect(() => {
     if (mapRef.current && mapLoaded) {
       mapRef.current.setLayoutProperty(
-        "geoid",
+        "geoid-relief",
         "visibility",
         showGeoid ? "visible" : "none"
       );
