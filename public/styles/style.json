@@ -31,7 +31,7 @@
       "url": "pmtiles:///geoid-map/data/egm2008_terrainrgb.pmtiles",
       "tileSize": 256,
       "minzoom": 0,
-      "maxzoom": 7,
+      "maxzoom": 6,
       "attribution": "<a href='https://geographiclib.sourceforge.io/1.18/geoid.html' target='_blank'>EGM2008</a>"
     }
   },
