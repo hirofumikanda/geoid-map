@@ -36,6 +36,10 @@
     }
   },
   "glyphs": "font/{fontstack}/{range}.pbf",
+  "terrain": {
+    "source": "geoid",
+    "exaggeration": 10000
+  },
   "layers": [
     {
       "id": "background",
@@ -96,7 +100,7 @@
       "type": "hillshade",
       "source": "gebco",
       "paint": {
-        "hillshade-exaggeration": 0.2
+        "hillshade-exaggeration": 0.5
       },
       "minzoom": 0
     },
